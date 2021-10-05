@@ -4,7 +4,7 @@ import _ from "lodash";
 
 
 
-const item = {
+let item = {
     add: (data: any) => {
         return new Promise(async (resolve) => {
             const entity: any = new Item();
@@ -33,7 +33,7 @@ const item = {
                 if (error || !doc) {
                     console.error(error);
                     error = {
-                        message: "Error in Order Listing",
+                        message: "Error in Order List",
                         data: doc,
                         success: false,
                         type: "success",
@@ -44,7 +44,7 @@ const item = {
                 if (doc) {
                     countQuery.exec((err: any, totalData: number) => {
                         return resolve({
-                            ...successObj, message: "Item Listed successfully", total: totalData, data: doc
+                            ...successObj, message: "Item List", total: totalData, data: doc
                         });
                     });
 
@@ -60,7 +60,7 @@ const item = {
                 .lean()
                 .exec((error: ErrorObj, doc: object, success: SuccessObj) => {
                     if (error || !doc) {
-                        return resolve();
+                        return resolve(undefined);
                     }
                     resolve(doc);
                 });
